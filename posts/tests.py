@@ -23,11 +23,11 @@ class PostModelTest(TestCase):
 
 class HomepageTest(TestCase):
     def setUp(self) -> None:
-        Post.objects.create(
+        post1 = Post.objects.create(
             title="post title 1",
             body="post body 1",
         )
-        Post.objects.create(
+        post2 = Post.objects.create(
             title="post title 2",
             body="post body 2",
         )
@@ -35,5 +35,11 @@ class HomepageTest(TestCase):
     def test_homepage_returns_correct_response(self):
         response = self.client.get('/') # client included in django.test 
 
-        self.assertTemplateNotUsed(response, 'posts/index.html')
+        self.assertTemplateUsed(response, 'posts/index.html')
         self.assertEqual(response.status_code, HTTPStatus.OK)
+
+    def test_homepage_returns_post_list(self):
+        response = self.client.get('/')
+
+        self.assertContains(response, "post title 1")
+        self.assertContains(response, "post title 2")

@@ -13,13 +13,14 @@ class PostModelTest(TestCase):
         self.assertEqual(posts, 0)
 
     def test_string_representation_of_objects(self):
-        
+
         post = Post.objects.create(
             title="post title",
             body="post body",
         )
 
         self.assertEqual(str(post), post.title)
+
 
 class HomepageTest(TestCase):
     def setUp(self) -> None:
@@ -33,13 +34,38 @@ class HomepageTest(TestCase):
         )
 
     def test_homepage_returns_correct_response(self):
-        response = self.client.get('/') # client included in django.test 
+        response = self.client.get("/")  # client included in django.test
 
-        self.assertTemplateUsed(response, 'posts/index.html')
+        self.assertTemplateUsed(response, "posts/index.html")
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_homepage_returns_post_list(self):
-        response = self.client.get('/')
+        response = self.client.get("/")
 
         self.assertContains(response, "post title 1")
         self.assertContains(response, "post title 2")
+
+
+class DetailPageTest(TestCase):
+
+    def setUp(self):
+        self.post = Post.objects.create(
+            title="Learn Python in this course",
+            body="Somebody once told me that Python is the best for learning",
+        )
+
+    def test_detail_page_returns_correct_response(self):
+        response = self.client.get(self.post.get_absolute_url())  # client is TestCase class
+
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertTemplateUsed(response, "posts/detail.html")
+
+    def test_detail_page_returns_correct_content(self):
+        response = self.client.get(self.post.get_absolute_url())
+
+        self.assertContains(response, self.post.title)
+        self.assertContains(response, self.post.body)
+        self.assertContains(response, self.post.created_at)
+
+
+

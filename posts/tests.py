@@ -54,7 +54,7 @@ class DetailPageTest(TestCase):
         )
 
     def test_detail_page_returns_correct_response(self):
-        response = self.client.get(self.post.get_absolute_url())  # client is TestCase class
+        response = self.client.get(self.post.get_absolute_url())
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertTemplateUsed(response, "posts/detail.html")

@@ -19,6 +19,7 @@ class PostModelTest(TestCase):
         post = baker.make(Post)
 
         self.assertEqual(str(post), post.title)
+        # self.assertTrue(isinstance(self.post, Post))
 
 
 class HomepageTest(TestCase):
@@ -62,9 +63,13 @@ class DetailPageTest(TestCase):
     def test_detail_page_returns_correct_content(self):
         response = self.client.get(self.post.get_absolute_url())
 
+        # print('DEBUG: ', response.content)
+        # print('DEBUG: ', self.post.created_at.strftime('%b. %d, %Y, %I:%M %p'))
+        # print('DEBUG: ', response.content.decode('utf-8'))
+
         self.assertContains(response, self.post.title)
         self.assertContains(response, self.post.body)
-        self.assertContains(response, self.post.created_at)
+        self.assertContains(response, self.post.created_at.strftime('%b. %d, %Y'))
 
 
 

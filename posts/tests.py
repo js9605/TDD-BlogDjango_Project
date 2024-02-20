@@ -1,12 +1,12 @@
 from django.test import TestCase
 from http import HTTPStatus
+from django.contrib.auth import get_user_model
 from model_bakery import baker
 
 from posts.models import Post
 
 
-# Create your tests here.
-
+User=get_user_model()
 
 class PostModelTest(TestCase):
     def test_post_model_exist(self):
@@ -19,19 +19,13 @@ class PostModelTest(TestCase):
         post = baker.make(Post)
 
         self.assertEqual(str(post), post.title)
-        # self.assertTrue(isinstance(self.post, Post))
+        self.assertTrue(isinstance(post, Post))
 
 
 class HomepageTest(TestCase):
     def setUp(self) -> None:
-        post1 = Post.objects.create(
-            title="post title 1",
-            body="post body 1",
-        )
-        post2 = Post.objects.create(
-            title="post title 2",
-            body="post body 2",
-        )
+        self.post1 = baker.make(Post)
+        self.post2 = baker.make(Post)
 
     def test_homepage_returns_correct_response(self):
         response = self.client.get("/")  # client included in django.test
@@ -42,17 +36,13 @@ class HomepageTest(TestCase):
     def test_homepage_returns_post_list(self):
         response = self.client.get("/")
 
-        self.assertContains(response, "post title 1")
-        self.assertContains(response, "post title 2")
+        self.assertContains(response, self.post1.title)
+        self.assertContains(response, self.post2.title)
 
 
 class DetailPageTest(TestCase):
-
     def setUp(self):
-        self.post = Post.objects.create(
-            title="Learn Python in this course",
-            body="Somebody once told me that Python is the best for learning",
-        )
+        self.post = baker.make(Post)
 
     def test_detail_page_returns_correct_response(self):
         response = self.client.get(self.post.get_absolute_url())
@@ -63,13 +53,24 @@ class DetailPageTest(TestCase):
     def test_detail_page_returns_correct_content(self):
         response = self.client.get(self.post.get_absolute_url())
 
-        # print('DEBUG: ', response.content)
-        # print('DEBUG: ', self.post.created_at.strftime('%b. %d, %Y, %I:%M %p'))
-        # print('DEBUG: ', response.content.decode('utf-8'))
-
         self.assertContains(response, self.post.title)
         self.assertContains(response, self.post.body)
         self.assertContains(response, self.post.created_at.strftime('%b. %d, %Y'))
 
 
+class PostAuthorTest(TestCase):
+    def setUp(self) -> None:
+        self.user = baker.make(User)
+        self.post = Post.objects.create(
+            title = "Test title",
+            body = "Test body of post",
+            author = self.user #Todo
+        )
 
+    def test_post_belongs_to_user(self):
+        self.assertTrue(hasattr(self.post, 'author'))
+
+    def test_author_is_instance_of_user_model(self):
+        self.assertTrue(isinstance(self.user, User))
+        self.assertEqual(self.post.author, self.user)
+    

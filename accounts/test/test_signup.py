@@ -3,7 +3,7 @@ from django.urls import reverse
 from http import HTTPStatus
 from django.contrib.auth.forms import UserCreationForm
 
-from .forms import UserRegistrationForm
+from accounts.forms import UserRegistrationForm
 
 
 class AccountCreation(TestCase):

@@ -1,10 +1,5 @@
 # Ignore virtual environment files
 env/
-posts/__pycache__/
-accounts/__pycache__/
-blog /__pycache__/
 
+__pycache__/
 
-blog/__pycache__/settings.cpython-311.pyc
-blog/__pycache__/urls.cpython-311.pyc
-posts/__pycache__/tests.cpython-311.pyc

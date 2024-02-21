@@ -2,7 +2,9 @@ from django.test import TestCase
 from django.urls import reverse
 from http import HTTPStatus
 
-# Create your tests here.
+from accounts.forms import UserRegistrationForm
+
+
 class AccountCreation(TestCase):
     def test_signup_page_exist(self):
         response = self.client.get(reverse('signup_page'))

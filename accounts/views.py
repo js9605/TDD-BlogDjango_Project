@@ -7,3 +7,4 @@ def register_user(request):
     form = UserRegistrationForm()
     context = {'form': form}
     return render(request, 'accounts/register.html', context)
+

@@ -1,7 +1,7 @@
 TDD Django Blog Project
 This Django blog project is developed to practice Test-Driven Development (TDD) concepts in programming. The project incorporates various features related to blog management, user authentication, and profile management.
 
-Features
+### Features
 1. List View
 Endpoint: /posts/
 Displays a list of blog posts.

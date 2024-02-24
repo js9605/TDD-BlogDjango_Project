@@ -1,6 +1,5 @@
 # TDD Django Blog Project
 
-![Logo](path-to-your-logo.png)
 
 This Django blog project is developed to practice Test-Driven Development (TDD) concepts in programming. The project incorporates various features related to blog management, user authentication, and profile management.
 

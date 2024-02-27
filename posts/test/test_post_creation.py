@@ -18,7 +18,16 @@ class PostCreationTest(TestCase):
         self.title = "Sample title"
         self.body = "Sample body for sample text"
 
+        User.objects.create_user(
+            username = 'testuser',
+            email = 'testuser@gmail.com',
+            password = 'p4ssword321##'
+        )
+
     def test_post_creation_page_exist(self):
+
+        self.client.login(username = 'testuser', password = 'p4ssword321##')
+
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
@@ -49,5 +58,10 @@ class PostCreationTest(TestCase):
 
         self.assertEqual(Post.objects.count(), 1)
 
+    def test_post_creation_requires_login(self):
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertRedirects(response, expected_url='/accounts/login/?next=/create_post/')
 
 

@@ -4,4 +4,5 @@ from django.urls import path
 urlpatterns = [
     path("", views.index, name="homepage"),
     path("post/<int:id>", views.post_detail, name="detail"),
+    path('create_post/', views.create_post, name = 'create_post')
     ]

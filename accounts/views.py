@@ -46,10 +46,10 @@ def login_page(request):
     }
     return render(request, "accounts/login.html", context)
 
-
 def logout_user(request):
     logout(request)
     return redirect(reverse('homepage'))
 
-
+def current_user_profile(request):
+    return render(request, 'accounts/current_user_profile.html')
 

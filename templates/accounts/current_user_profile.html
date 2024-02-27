@@ -71,72 +71,19 @@
             </div>
           </div>
           <div class="row">
+            
+            {% for post in posts %}
             <article class="blog-post">
-              <h2 class="blog-post-title mb-1">Sample blog post</h2>
-              <p class="blog-post-meta">January 1, 2021</p>
-
-              <p>
-                This blog post shows a few different types of content that’s
-                supported and styled with Bootstrap. Basic typography, lists,
-                tables, images, code, and more are all supported as expected.
-              </p>
-              <hr />
-            </article>
-            <article class="blog-post">
-              <h2 class="blog-post-title mb-1">Sample blog post</h2>
-              <p class="blog-post-meta">January 1, 2021</p>
-
-              <p>
-                This blog post shows a few different types of content that’s
-                supported and styled with Bootstrap. Basic typography, lists,
-                tables, images, code, and more are all supported as expected.
-              </p>
-              <hr />
-            </article>
-            <article class="blog-post">
-              <h2 class="blog-post-title mb-1">Sample blog post</h2>
-              <p class="blog-post-meta">January 1, 2021</p>
-
-              <p>
-                This blog post shows a few different types of content that’s
-                supported and styled with Bootstrap. Basic typography, lists,
-                tables, images, code, and more are all supported as expected.
-              </p>
-              <hr />
-            </article>
-            <article class="blog-post">
-              <h2 class="blog-post-title mb-1">Sample blog post</h2>
-              <p class="blog-post-meta">January 1, 2021</p>
-
-              <p>
-                This blog post shows a few different types of content that’s
-                supported and styled with Bootstrap. Basic typography, lists,
-                tables, images, code, and more are all supported as expected.
-              </p>
-              <hr />
-            </article>
-            <article class="blog-post">
-              <h2 class="blog-post-title mb-1">Sample blog post</h2>
-              <p class="blog-post-meta">January 1, 2021</p>
-
-              <p>
-                This blog post shows a few different types of content that’s
-                supported and styled with Bootstrap. Basic typography, lists,
-                tables, images, code, and more are all supported as expected.
-              </p>
-              <hr />
-            </article>
-            <article class="blog-post">
-              <h2 class="blog-post-title mb-1">Sample blog post</h2>
-              <p class="blog-post-meta">January 1, 2021</p>
-
-              <p>
-                This blog post shows a few different types of content that’s
-                supported and styled with Bootstrap. Basic typography, lists,
-                tables, images, code, and more are all supported as expected.
-              </p>
-              <hr />
-            </article>
+                <h2 class="blog-post-title mb-1">{{post.title}}</h2>
+                <p class="blog-post-meta">{{post.created_at}}</p>
+  
+                <p>
+                    {{post.body|truncatewords:30}}
+                </p>
+                <hr />
+              </article>
+            {% endfor %}
+                
           </div>
         </div>
       </div>

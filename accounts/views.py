@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 
+from posts.models import Post
 from .forms import UserRegistrationForm
 
 
@@ -51,5 +52,16 @@ def logout_user(request):
     return redirect(reverse('homepage'))
 
 def current_user_profile(request):
-    return render(request, 'accounts/current_user_profile.html')
+    user = request.user
+
+    posts = Post.objects.filter(author=user).all()
+    context = {
+        'user':user,
+        'posts':posts,
+    }
+    return render(request, 'accounts/current_user_profile.html', context)
+
+
+
+
 

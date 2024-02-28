@@ -58,7 +58,7 @@ This Django blog project is developed to practice Test-Driven Development (TDD) 
 2. **Install dependencies:**
 
     ```bash
-    cd TDD-Django-Blog
+    cd TDD-BlogDjango_Project
     pip install -r requirements.txt
     ```
 

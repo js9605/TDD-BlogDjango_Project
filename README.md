@@ -42,7 +42,7 @@ This Django blog project is developed to practice Test-Driven Development (TDD) 
 - **Endpoint**: `/accounts/profile/{username}/`
 - Generates user profiles with relevant information.
 
-### 8. Edit User Profile and Add Avatars
+### 8. Edit User Profile and Add Avatars (ToDo)
 
 - **Endpoint (Edit Profile)**: `/accounts/profile/{username}/edit/`
 - Allows users to edit their profiles and upload avatars.

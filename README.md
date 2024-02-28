@@ -52,7 +52,7 @@ This Django blog project is developed to practice Test-Driven Development (TDD) 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/TDD-Django-Blog.git
+    git clone https://github.com/js9605/TDD-BlogDjango_Project.git
     ```
 
 2. **Install dependencies:**

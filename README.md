@@ -59,7 +59,6 @@ This Django blog project is developed to practice Test-Driven Development (TDD) 
 
     ```bash
     cd TDD-BlogDjango_Project
-    pip install -r requirements.txt
     ```
 
 3. **Run migrations:**

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from posts.models import Post
 from .forms import UserRegistrationForm
@@ -51,6 +52,7 @@ def logout_user(request):
     logout(request)
     return redirect(reverse('homepage'))
 
+@login_required
 def current_user_profile(request):
     user = request.user
 
